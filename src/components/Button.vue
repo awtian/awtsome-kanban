@@ -41,7 +41,7 @@
 
 <style>
   .modal-card-foot {
-    justify-content: flex-end;
+    justify-content: flex-end !important;
   }
 </style>
 

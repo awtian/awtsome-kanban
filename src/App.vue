@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Hero />
-    <div class="container main">
+    <div id="maincont" class="container">
       <div class="columns">
       <Panel title="Back-log" color="red" :data="backlog" class="column" />
       <Panel title="To-do" color="orange" :data="todo" class="column" />
@@ -45,8 +45,8 @@ export default {
 </script>
 
 <style>
-.main {
-  margin-top:33px;
+#maincont {
+  margin-top:33px !important;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

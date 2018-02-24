@@ -9,7 +9,7 @@
         <div class="columns is-multiline" style="width: 110%">
           <div v-for="item in data" :key="item.title" class="card column">
             <header class="card-header" :style="{backgroundColor: color}">
-              <p class="card-header-title">
+              <p class="card-header-title whitetext">
                 {{item.title}}
               </p>
             </header>
@@ -37,13 +37,13 @@
     justify-content: center;
   }
   .card {
-    margin:10px;
+    margin:10px !important;
   }
-  .card-header-title {
-    color: white;
+  .whitetext {
+    color: white !important;
   }
   .left {
-    text-align: left;
+    text-align: left !important;
   }
 </style>
 
