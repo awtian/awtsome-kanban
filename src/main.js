@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
+import Buefy from 'buefy'
+import 'buefy/lib/buefy.css'
 
+Vue.use(Buefy, {
+  defaultIconPack: 'fas'
+})
 Vue.config.productionTip = false
 
 new Vue({
