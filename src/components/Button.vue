@@ -40,54 +40,54 @@
 </template>
 
 <script>
-  import fab from 'vue-fab'
+import fab from 'vue-fab'
 
-  export default {
-    components: {
-      fab
-    },
-    data() {
-      return {
-        create: '',
-        title: '',
-        point: '',
-        assigned: '',
-        bgColor: 'hsl(204, 86%, 53%)',
-        position: 'top-right',
-        fabActions: [{
-            name: 'newKanban',
-            icon: 'queue'
-          },
-          {
-            name: 'about',
-            icon: 'mood'
-          }
-        ]
+export default {
+  components: {
+    fab
+  },
+  data () {
+    return {
+      create: '',
+      title: '',
+      point: '',
+      assigned: '',
+      bgColor: 'hsl(204, 86%, 53%)',
+      position: 'top-right',
+      fabActions: [{
+        name: 'newKanban',
+        icon: 'queue'
+      },
+      {
+        name: 'about',
+        icon: 'mood'
       }
+      ]
+    }
+  },
+  methods: {
+    openmodal () {
+      this.create = 'is-active'
     },
-    methods: {
-      openmodal() {
-        this.create = 'is-active'
-      },
-      closemodal() {
-        this.create = ''
-      },
-      alert() {
-        alert('Created by awtian. @awtian, everywhere.');
-      },
-      createkanban() {
-        this.$db.ref().child('backlog').push({
-          title: this.title,
-          point: +this.point,
-          assigned: this.assigned
-        })
-        this.title = null
-        this.point = null
-        this.assigned = null
-        this.closemodal()
-      }
+    closemodal () {
+      this.create = ''
+    },
+    alert () {
+      alert('Created by awtian. @awtian, everywhere.')
+    },
+    createkanban () {
+      this.$db.ref().child('backlog').push({
+        title: this.title,
+        point: +this.point,
+        assigned: this.assigned
+      })
+      this.title = null
+      this.point = null
+      this.assigned = null
+      this.closemodal()
     }
   }
+}
 </script>
 
 <style>

@@ -7,7 +7,7 @@
       </div>
       <div class="panel-block">
         <div class="columns is-multiline" style="width: 110%">
-          <div v-for="(item, key) in data" :key="item.title" class="card column">
+          <div v-for="item in data" :key="item.title" class="card column">
             <header class="card-header" :style="{backgroundColor: color}">
               <p class="card-header-title">
                 {{item.title}}
@@ -32,71 +32,71 @@
 </template>
 
 <script>
-  export default {
-    props: ['title', 'color', 'data'],
-    data() {
-      return {
-        isOpen: true
+export default {
+  props: ['title', 'color', 'data'],
+  data () {
+    return {
+      isOpen: true
+    }
+  },
+  computed: {
+    currentDB () {
+      if (this.title === 'Back-log') {
+        return 'backlog'
+      } else if (this.title === 'To-do') {
+        return 'todo'
+      } else if (this.title === 'Doing') {
+        return 'doing'
+      } else {
+        return 'done'
       }
     },
-    computed: {
-      currentDB(){
-        if(this.title === 'Back-log') {
-          return 'backlog'
-        } else if(this.title === 'To-do') {
-          return 'todo'
-        } else if(this.title === 'Doing') {
-          return 'doing'
-        } else{
-          return 'done'
-        }
-      },
-      nextDB(){
-        if(this.title === 'Back-log') {
-          return 'todo'
-        } else if(this.title === 'To-do') {
-          return 'doing'
-        } else if(this.title === 'Doing') {
-          return 'done'
-        } else {
-          return null
-        }
-      },
-      prevDB(){
-        if(this.title === 'To-do') {
-          return 'backlog'
-        } else if(this.title === 'Doing') {
-          return 'todo'
-        } else if(this.title === 'Done') {
-          return 'doing'
-        } else {
-          return null
-        }
+    nextDB () {
+      if (this.title === 'Back-log') {
+        return 'todo'
+      } else if (this.title === 'To-do') {
+        return 'doing'
+      } else if (this.title === 'Doing') {
+        return 'done'
+      } else {
+        return null
       }
     },
-    methods: {
-      prev (id, data) {
-        if (this.prevDB) {
-          this.$db.ref(`${this.prevDB}/${id}`).update({title: data.title, assigned: data.assigned, point: data.point})
-          this.$db.ref(`${this.currentDB}/${id}`).set(null)
-        } else {
-          alert('there are no previous step')
-        }
-      },
-      next (id, data) {
-        if (this.nextDB) {
-          this.$db.ref(`${this.nextDB}/${id}`).update({title: data.title, assigned: data.assigned, point: data.point})
-          this.$db.ref(`${this.currentDB}/${id}`).set(null)
-        } else {
-          alert('there are no next step')
-        }
-      },
-      delz(id) {
-        let conf = confirm('are you sure?')
-        if (conf) this.$db.ref(`${this.currentDB}/${id}`).set(null)
+    prevDB () {
+      if (this.title === 'To-do') {
+        return 'backlog'
+      } else if (this.title === 'Doing') {
+        return 'todo'
+      } else if (this.title === 'Done') {
+        return 'doing'
+      } else {
+        return null
       }
     }
+  },
+  methods: {
+    prev (id, data) {
+      if (this.prevDB) {
+        this.$db.ref(`${this.prevDB}/${id}`).update({title: data.title, assigned: data.assigned, point: data.point})
+        this.$db.ref(`${this.currentDB}/${id}`).set(null)
+      } else {
+        alert('there are no previous step')
+      }
+    },
+    next (id, data) {
+      if (this.nextDB) {
+        this.$db.ref(`${this.nextDB}/${id}`).update({title: data.title, assigned: data.assigned, point: data.point})
+        this.$db.ref(`${this.currentDB}/${id}`).set(null)
+      } else {
+        alert('there are no next step')
+      }
+    },
+    delz (id) {
+      let conf = confirm('are you sure?')
+      if (conf) this.$db.ref(`${this.currentDB}/${id}`).set(null)
+    }
   }
+}
 </script>
 
 <style>

@@ -20,12 +20,12 @@ import Button from './components/Button.vue'
 
 export default {
   name: 'app',
-  data() {
+  data () {
     return {
       backlog: null,
       todo: null,
       doing: null,
-      done: null,
+      done: null
     }
   },
   firebase () {
