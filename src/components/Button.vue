@@ -39,6 +39,12 @@
   </div>
 </template>
 
+<style>
+  .modal-card-foot {
+    justify-content: flex-end;
+  }
+</style>
+
 <script>
 import fab from 'vue-fab'
 import swal from 'sweetalert'
@@ -101,9 +107,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .modal-card-foot {
-    justify-content: flex-end;
-  }
-</style>

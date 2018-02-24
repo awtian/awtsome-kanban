@@ -31,6 +31,22 @@
   </section>
 </template>
 
+<style>
+  .columns{
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    margin:10px;
+  }
+  .card-header-title {
+    color: white;
+  }
+  .left {
+    text-align: left;
+  }
+</style>
+
 <script>
 import swal from 'sweetalert'
 export default {
@@ -114,19 +130,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .columns{
-    display: flex;
-    justify-content: center;
-  }
-  .card {
-    margin:10px;
-  }
-  .card-header-title {
-    color: white;
-  }
-  .left {
-    text-align: left;
-  }
-</style>
