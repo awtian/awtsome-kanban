@@ -41,6 +41,7 @@
 
 <script>
 import fab from 'vue-fab'
+import swal from 'sweetalert'
 
 export default {
   components: {
@@ -73,7 +74,12 @@ export default {
       this.create = ''
     },
     alert () {
-      alert('Created by awtian. @awtian, everywhere.')
+      swal({
+        title: 'Hello!',
+        text: 'This page is created by @awtian 🐼',
+        icon: 'success',
+        button: 'Awesome!'
+      })
     },
     createkanban () {
       this.$db.ref().child('backlog').push({
@@ -85,6 +91,12 @@ export default {
       this.point = null
       this.assigned = null
       this.closemodal()
+      swal({
+        title: 'Success!',
+        text: 'Your new Kanban has been created 🐼',
+        icon: 'success',
+        button: 'Awesome!'
+      })
     }
   }
 }

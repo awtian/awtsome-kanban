@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert'
 export default {
   props: ['title', 'color', 'data'],
   data () {
@@ -92,8 +93,23 @@ export default {
       }
     },
     delz (id) {
-      let conf = confirm('are you sure?')
-      if (conf) this.$db.ref(`${this.currentDB}/${id}`).set(null)
+      swal({
+        title: 'Are you sure?',
+        text: 'Once deleted, you will not be able to recover this Kanban!',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            this.$db.ref(`${this.currentDB}/${id}`).set(null)
+            swal('Poof! Your kanban has been deleted!', {
+              icon: 'success'
+            })
+          } else {
+            swal('Your kanban deletion has been cancelled')
+          }
+        })
     }
   }
 }
